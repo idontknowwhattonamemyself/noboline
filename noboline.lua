@@ -211,6 +211,10 @@ MovementSection:NewButton("HeetSeeker(High Ping)", "speeds u up", function()
     end
 end)
 
+MovementSection:NewButton("antivoid but cooler", "antivoid", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/GavinCoded/Antivoid/main/README.md"))()
+end)
+
 MovementSection:NewKeybind("DinoExploit", "stuff", Enum.KeyCode.F3, function()
 	local args = {
     [1] = "dino_charge"
