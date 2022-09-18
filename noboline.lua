@@ -1,4 +1,3 @@
-
 --noboline bedwars
 
 local KnockbackTable = debug.getupvalue(require(game:GetService("ReplicatedStorage").TS.damage["knockback-util"]).KnockbackUtil.calculateKnockbackVelocity, 1)
@@ -63,7 +62,7 @@ local Movement = Window:NewTab("Movement")
 
 local MovementSection = Movement:NewSection("General")
 
-MovementSection:NewKeybind("Fly", "R", Enum.KeyCode.R, function()
+MovementSection:NewKeybind("Better Longjump", "l", Enum.KeyCode.R, function()
 	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
     wait(0.7)
     game.Workspace.Gravity = 0
@@ -101,6 +100,41 @@ end)
 
 MovementSection:NewKeybind("Speed", "speeds up", Enum.KeyCode.K, function()
 	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 23
+end)
+
+MovementSection:NewKeybind("Speed", "speeds up", Enum.KeyCode.K, function()
+	local vec3 = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X + 39, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y + 12, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
+local bp = Instance.new('BodyPosition')
+bp.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+bp.Position = vec3
+wait(1)
+bp:remove()
+local bv = Instance.new("BodyVelocity")
+bv.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+bv.Velocity = Vector3.new(0, -25, 0)
+wait(.2)
+
+
+local bpfwd = Instance.new("BodyPosition")
+bpfwd.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+bpfwd.Position = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X + 74, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y + 25, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
+bpfwd.P = 10000
+bpfwd.D = 0
+
+wait(.1)
+bv:remove()
+wait(.4)
+bpfwd:remove()
+
+
+local bpfwd = Instance.new('BodyPosition')
+    local vec3 = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.X + 39, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Y +2, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.Z)
+bpfwd.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+bpfwd.Position = vec3
+wait(.1)
+bv:remove()
+wait(.4)
+bpfwd:remove()
 end)
 
 MovementSection:NewKeybind("Longjump", "longer jump", Enum.KeyCode.J, function()
@@ -159,12 +193,21 @@ wait(1)
 game.Workspace.Gravity = 196
 end)
 
-MovementSection:NewButton("HeetSeeker(ForNoobs)", "speeds u up", function()
+MovementSection:NewButton("HeetSeeker(low ping)", "speeds u up", function()
     while true do
         wait(0.5)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 120
     wait(0.1)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 23
+    end
+end)
+
+MovementSection:NewButton("HeetSeeker(High Ping)", "speeds u up", function()
+    while true do
+        wait(0.5)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 74
+    wait(0.1)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
     end
 end)
 
