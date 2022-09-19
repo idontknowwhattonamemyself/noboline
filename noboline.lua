@@ -49,6 +49,8 @@ if state then
 	end
 end)
 
+
+
 CombatSection:NewButton("AntiAura", "makes it harder to hit you", function()
     while true do
         wait(1)
@@ -61,7 +63,19 @@ end)
 local Movement = Window:NewTab("Movement")
 
 local MovementSection = Movement:NewSection("General")
+_G.Speed = false
+MovementSection:NewToggle("CFspeed", "made by wowzers!#0560 on discord i hate gavin 🤫", function(state)
+ 
+        _G.Speed = state
+    
+end)
 
+game:GetService("RunService").RenderStepped:Connect(function()
+if _G.Speed == true and game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character.HumanoidRootPart then
+game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(.4,0,0) * game:GetService("Players").LocalPlayer.Character.Humanoid.MoveDirection * Vector3.new(.5,1,1)) 
+
+end
+end)
 MovementSection:NewKeybind("Better Longjump", "l", Enum.KeyCode.R, function()
 	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 0
     wait(0.7)
