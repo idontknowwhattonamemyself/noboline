@@ -683,3 +683,40 @@ MechanicsSection:NewKeybind("Open GUI", "RightShift", Enum.KeyCode.RightShift, f
 end)
 wait(1)
 game.Players.LocalPlayer.Character.Animate.Disabled = true
+
+local gfly = false
+MovementSection:NewToggle("Gfly", "haaha fly go brrr", function(gflytog)
+    gfly = gflytog
+    end)
+game:GetService("RunService").Heartbeat:Connect(function()
+    if gfly then
+    local pchar = game:GetService("Players").LocalPlayer.Character
+if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater") then
+    	pchar.HumanoidRootPart.Velocity = Vector3.new(0,0,0) + game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector
+    		pchar.Humanoid:ChangeState("Landed")
+local Float = Instance.new('Part')
+			
+			
+			Float.Name = "Floater"
+			Float.Parent = game:GetService("Players").LocalPlayer.Character
+			Float.Transparency = 1
+			Float.Size = Vector3.new(2,0.2,1.5)
+			Float.Anchored = true
+			end
+			local FloatValue = -3.1
+		game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater").CFrame = pchar.HumanoidRootPart.CFrame * CFrame.new(0,FloatValue,0)
+		pchar.HumanoidRootPart.Velocity = Vector3.new()
+		
+		pchar.Humanoid:ChangeState(3)
+
+		
+		
+			pchar.HumanoidRootPart.CFrame = CFrame.new(pchar.HumanoidRootPart.Position + pchar.Humanoid.MoveDirection * .15 + Vector3.new(0,-.2, 0))
+	
+    elseif  game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater") and gfly == false then
+        
+    game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater"):remove()
+    end
+
+    
+			end)
