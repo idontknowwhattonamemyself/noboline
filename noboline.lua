@@ -690,10 +690,11 @@ MovementSection:NewToggle("Gfly", "haaha fly go brrr", function(gflytog)
     end)
 game:GetService("RunService").Heartbeat:Connect(function()
     if gfly then
+        
     local pchar = game:GetService("Players").LocalPlayer.Character
+	pchar.Humanoid.JumpPower = .01
 if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater") then
-    	pchar.HumanoidRootPart.Velocity = Vector3.new(0,0,0) + game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector
-    		pchar.Humanoid:ChangeState("Landed")
+    	pchar.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
 local Float = Instance.new('Part')
 			
 			
@@ -706,13 +707,22 @@ local Float = Instance.new('Part')
 			local FloatValue = -3.1
 		game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater").CFrame = pchar.HumanoidRootPart.CFrame * CFrame.new(0,FloatValue,0)
 		pchar.HumanoidRootPart.Velocity = Vector3.new()
-		
-		pchar.Humanoid:ChangeState(3)
+	
+	    	pchar.HumanoidRootPart.Velocity = Vector3.new(0,0,0)
+pchar.Humanoid.WalkSpeed = .01
 
 		
 		
-			pchar.HumanoidRootPart.CFrame = CFrame.new(pchar.HumanoidRootPart.Position + pchar.Humanoid.MoveDirection * .15 + Vector3.new(0,-.2, 0))
-	
+			pchar.HumanoidRootPart.CFrame = CFrame.new(pchar.HumanoidRootPart.Position + Vector3.new(0,-.003, 0)  + pchar.Humanoid.MoveDirection * .10)
+	if task.wait(.2) then
+	        		pchar.Humanoid:ChangeState(3)
+pchar.Humanoid.Jump = true
+	end
+		if task.wait(.3) then
+	        		   pchar.Humanoid:ChangeState("Landed")
+pchar.Humanoid:ChangeState("Walking")
+	end
+ 
     elseif  game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater") and gfly == false then
         
     game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater"):remove()
