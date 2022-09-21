@@ -684,7 +684,55 @@ end)
 wait(1)
 game.Players.LocalPlayer.Character.Animate.Disabled = true
 
-local gfly = false
+local funnyjump = false
+MovementSection:NewToggle("FunnyJump", "haaha fly go brrr", function(fjtog)
+    funnyjump = fjtog
+    end)
+game:GetService("RunService").Heartbeat:Connect(function()
+    if gfly then
+       
+    local pchar = game:GetService("Players").LocalPlayer.Character
+	pchar.Humanoid.JumpPower = .01
+if not game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater") then
+    	
+local Float = Instance.new('Part')
+			
+			
+			Float.Name = "Floater"
+			Float.Parent = game:GetService("Players").LocalPlayer.Character
+			Float.Transparency = 1
+			Float.Size = Vector3.new(2,0.2,1.5)
+			Float.Anchored = true
+			end
+			local FloatValue = -3.1
+		game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater").CFrame = pchar.HumanoidRootPart.CFrame * CFrame.new(0,FloatValue,0)
+		
+	
+	    
+pchar.Humanoid.WalkSpeed = .01
+
+		workspace.Gravity = 5000
+		
+			pchar.HumanoidRootPart.CFrame = CFrame.new(pchar.HumanoidRootPart.Position + Vector3.new(0,-.003, 0)  + pchar.Humanoid.MoveDirection * .10)
+	if task.wait(.2) then
+	        		pchar.Humanoid:ChangeState(3)
+pchar.Humanoid.Jump = not Humanoid.Jump
+	end
+		if task.wait(.3) then
+	        		   pchar.Humanoid:ChangeState("Landed")
+pchar.Humanoid:ChangeState("Walking")
+pchar.HumanoidRootPart.Velocity = Vector3.new(0,-2,0)
+	end
+    elseif  workspace.Gravity == 5000 and gfly == false then
+ workspace.Gravity = 196.2
+    elseif  game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater") and gfly == false then
+        
+    game:GetService("Players").LocalPlayer.Character:FindFirstChild("Floater"):remove()
+    end
+
+    
+end)
+		local gfly = false
 MovementSection:NewToggle("Gfly", "haaha fly go brrr", function(gflytog)
     gfly = gflytog
     end)
